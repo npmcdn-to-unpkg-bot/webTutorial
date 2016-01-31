@@ -5,10 +5,14 @@
     <title></title>
   </head>
   <body>
-    <canvas id="canvas" width="300" height="300"></canvas>
+    <canvas id="canvas" width="500" height="500"></canvas>
   </body>
   <script type="text/javascript">
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
+
+    context.strokeStyle = "red";
+    // strokeRect(x, y, 宽，高)
+    context.strokeRect(10, 10, 150, 150);
   </script>
 </html>
