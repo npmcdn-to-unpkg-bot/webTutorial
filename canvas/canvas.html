@@ -11,8 +11,13 @@
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
 
+    // 描边
     context.strokeStyle = "red";
     // strokeRect(x, y, 宽，高)
     context.strokeRect(10, 10, 150, 150);
+
+    // 填充
+    context.fillStyle = "blue";
+    context.fillRect(20, 20, 150, 150);
   </script>
 </html>
