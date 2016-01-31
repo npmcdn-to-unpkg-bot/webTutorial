@@ -1,0 +1,31 @@
+{
+  "name": "tutorial",
+  "version": "1.0.0",
+  "description": "前端开发示例代码，各种demo, test,练习代码等",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ivanwangcy/webTutorial.git"
+  },
+  "keywords": [
+    "web",
+    "js",
+    "css",
+    "html"
+  ],
+  "author": "Ivan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ivanwangcy/webTutorial/issues"
+  },
+  "homepage": "https://github.com/Ivanwangcy/webTutorial#readme",
+  "dependencies": {
+    "babel-core": "^6.4.5",
+    "babel-runtime": "^6.3.19",
+    "jquery": "^2.2.0",
+    "react": "^0.14.7"
+  }
+}
