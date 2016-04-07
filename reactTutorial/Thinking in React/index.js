@@ -1,8 +1,22 @@
+var ProductTable = React.createClass({
+
+});
+var SearchBar = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <input />
+      </div>
+    );
+  }
+});
+
 var FilerableProductTable = React.createClass({
   render: function() {
     return (
       <div>
-          Hello World!!
+          <SearchBar />
+          <ProductTable products={this.props.products} />
       </div>
     );
   }
