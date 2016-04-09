@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>笑脸</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas");
+      var context = canvas.getContext("2d");
+      context.fillStyle = "#666";
+      context.fillRect(0, 0, 300, 300);
+      var path = new Path2D();
+      // 画圆 arc(起点x, 起点y, 半径，起始角弧度， 结束角弧度，顺时针false/逆时针true)
+      path.arc(150, 150, 75, 0, Math.PI*2, false);
+      path.moveTo(200, 150);
+      path.arc(150, 150, 50, 0, Math.PI, false);
+      path.moveTo(125, 125);
+      path.arc(115, 125, 10, 0, Math.PI*2, true);
+      path.moveTo(195, 125);
+      path.arc(185, 125, 10, 0, Math.PI*2, true);
+      context.strokeStyle = "#0ff";
+      context.stroke(path);
+    </script>
+  </body>
+</html>

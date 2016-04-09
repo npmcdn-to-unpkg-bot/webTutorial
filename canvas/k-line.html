@@ -5,7 +5,7 @@
     <title>K 线图</title>
   </head>
   <body>
-    <canvas id="stock-canvas" width="800" height="600"></canvas>
+    <canvas id="stock-canvas" width="650" height="500"></canvas>
     <script type="text/javascript">
 
     window.loadStockData = function(r) {
@@ -34,9 +34,15 @@
 
     window.drawStock = function (data) {
       var stockCanvas = document.getElementById("stock-canvas"),
-          width = canvas.width,
-          height = canvas.height,
+          width = stockCanvas.width,
+          height = stockCanvas.height,
           context = stockCanvas.getContext('2d');
+          context.clearRect(0, 0, 650, 500); // 清空画布
+          context.fillStyle = "#ddd"; // 设置填充颜色
+          context.fillRect(0, 0, 650, 500); // 填充画布背景色
+
+          // 利用 Path 绘制复杂路径
+          var path = new Path2D();
     }
 
 
