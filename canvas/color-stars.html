@@ -9,6 +9,8 @@
     <script type="text/javascript">
 
       var context = document.getElementById("canvas").getContext("2d");
+      context.fillStyle = '#ddd';
+      context.fillRect(0,0,500,400);
       /**
        * [getRandomColor 获取随机颜色]
        * @return {[type]} [description]
@@ -26,14 +28,24 @@
         return hexColor;
       }
 
-      function star(radius, dx, dy, angleCount/*角的数量*/){
-        context.fillStyle = getRandomColor();
-        context.shadowColor= getRandomColor();
-        context.shadowOffsetX=5;
-        context.shadowOffsetY=5;
-        context.shadowBlur=10;
-        context.beginPath();
-        context.moveTo(radius + dx, dy);
+      /**
+       * [star 画五角星 , 参数可以不传, 默认绘制半径20，水平100px, 垂直100px, 的五角星]
+       * @param  {[type]} radius     [五角星半径]
+       * @param  {[type]} dx         [水平坐标五角星中心位置 x]
+       * @param  {[type]} dy         [垂直坐标五角星中心位置 y]
+       * @param  {[type]} angleCount [角的数量，自定义角数量]
+       * @return {[type]}            [绘制随机颜色的五角星]
+       */
+      function star(radius = 55, dx = 250, dy = 200, angleCount = 5){
+        context.fillStyle = getRandomColor(); // 填充颜色
+
+        context.shadowColor= getRandomColor(); // 阴影颜色
+        context.strokeStyle = getRandomColor(); // 描边颜色
+        context.shadowOffsetX=5; // 阴影偏移量x
+        context.shadowOffsetY=5; // 阴影偏移量y
+        context.shadowBlur=10;  // 模糊长度
+        context.beginPath(); // 开始画五角星
+
         var side = angleCount * 2;
         //draw 10 lines;
         for (var i = 1; i <= side; i++){
@@ -48,14 +60,27 @@
         }
 
         context.closePath();
-        context.strokeStyle = "#f00";
         context.stroke();
         context.fill();
       }
 
-      for (var i = 0; i < 200; i++) {
-        // star(Math.random() * 20, Math.random() * 500, Math.random() * 400, Math.ceil((Math.random() * 8)) + 2);
-        star(Math.random() * 20, Math.random() * 500, Math.random() * 400, 5);
+      // star(); // 默认绘制
+      // // 绘制200个五角星
+      // for (var i = 0; i < 200; i++) {
+      //   star(Math.random() * 20, Math.random() * 500, Math.random() * 400);
+      // }
+      //
+      // // 绘制200个随机多角型
+      // for (var i = 0; i < 200; i++) {
+      //   star(Math.random() * 20, Math.random() * 500, Math.random() * 400, Math.ceil((Math.random() * 8)) + 2);
+      // }
+
+      context.translate(200,0);
+      for(var i=0;i<50;i++){ // 螺旋式
+        context.scale(0.95,0.95);
+        context.rotate(Math.PI/8);
+        context.translate(70,-25);
+        star();
       }
     </script>
   </body>
