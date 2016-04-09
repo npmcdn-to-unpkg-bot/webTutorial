@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>五彩缤纷的星星</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="400"></canvas>
+    <script type="text/javascript">
+
+      var context = document.getElementById("canvas").getContext("2d");
+      /**
+       * [getRandomColor 获取随机颜色]
+       * @return {[type]} [description]
+       */
+      function getRandomColor(){
+        var padLeftHex = function(color){
+            while (color.length < 6) {
+              color = "0" + color;
+            }
+            return "#" + color;
+          },
+          randomColor = parseInt(Math.random()*16777215).toString(16), // 随机一个颜色值
+          hexColor = padLeftHex(randomColor); // 不够六位补零
+        // console.log(hexColor);
+        return hexColor;
+      }
+
+      function star(radius, dx, dy, angleCount/*角的数量*/){
+        context.fillStyle = getRandomColor();
+        context.shadowColor= getRandomColor();
+        context.shadowOffsetX=5;
+        context.shadowOffsetY=5;
+        context.shadowBlur=10;
+        context.beginPath();
+        context.moveTo(radius + dx, dy);
+        var side = angleCount * 2;
+        //draw 10 lines;
+        for (var i = 1; i <= side; i++){
+        var radius2 = radius;
+        if (i % 2 > 0){
+          //alternate the radius to make spikes every other line
+          radius2 = radius / 2;
+        }
+        var angle = Math.PI * 2 / side * i;
+        // console.log(angle);
+        context.lineTo(Math.cos(angle)*radius2 + dx, Math.sin(angle)*radius2 + dy);
+        }
+
+        context.closePath();
+        context.strokeStyle = "#f00";
+        context.stroke();
+        context.fill();
+      }
+
+      for (var i = 0; i < 200; i++) {
+        // star(Math.random() * 20, Math.random() * 500, Math.random() * 400, Math.ceil((Math.random() * 8)) + 2);
+        star(Math.random() * 20, Math.random() * 500, Math.random() * 400, 5);
+      }
+    </script>
+  </body>
+</html>
