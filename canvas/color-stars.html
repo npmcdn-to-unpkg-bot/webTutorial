@@ -56,13 +56,17 @@
           radius2 = radius * 2 / 5; // 凹陷的角，根据角度可以手动调节比例，等于半径就是多边形
         }
           var angle = Math.PI * 2 / side * i;
-          console.log(Math.cos(angle)*radius2 + dx , Math.sin(angle)*radius2 + dy);
+          // console.log(Math.cos(angle)*radius2 + dx , Math.sin(angle)*radius2 + dy);
           context.lineTo(Math.cos(angle)*radius2 + dx, Math.sin(angle)*radius2 + dy);
         }
         context.closePath();
         context.fill();
-        // context.arc(dx, dy, radius, 0, Math.PI * 2, false);
         context.stroke();
+        context.beginPath();
+        context.strokeStyle = getRandomColor(); // 描边颜色
+        context.arc(dx, dy, radius, 0, Math.PI * 2, false);
+        context.stroke();
+        context.closePath();
       }
 
       // star(); // 默认绘制
