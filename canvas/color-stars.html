@@ -29,14 +29,15 @@
       }
 
       /**
-       * [star 画五角星 , 参数可以不传, 默认绘制半径20，水平100px, 垂直100px, 的五角星]
-       * @param  {[type]} radius     [五角星半径]
-       * @param  {[type]} dx         [水平坐标五角星中心位置 x]
-       * @param  {[type]} dy         [垂直坐标五角星中心位置 y]
-       * @param  {[type]} angleCount [角的数量，自定义角数量]
+       * [star 根据参数画出多边形或者多角形 默认画五角星, 参数可以不传, 默认绘制半径20，水平100px, 垂直100px, 的五角星]
+       * @param  {[type]} isAngle     [是多角形还是多边形 默认多角形]
+       * @param  {[type]} radius     [五角星半径 默认 55]
+       * @param  {[type]} dx         [水平坐标五角星中心位置 x 默认250]
+       * @param  {[type]} dy         [垂直坐标五角星中心位置 y 默认200]
+       * @param  {[type]} angleCount [角的数量，自定义角数量，默认为五角星]
        * @return {[type]}            [绘制随机颜色的五角星]
        */
-      function star(radius = 55, dx = 250, dy = 200, angleCount = 5){
+      function star(isAngle = true, radius = 55, dx = 250, dy = 200, angleCount = 5){
         context.fillStyle = getRandomColor(); // 填充颜色
 
         context.shadowColor= getRandomColor(); // 阴影颜色
@@ -46,17 +47,17 @@
         context.shadowBlur=10;  // 模糊长度
         context.beginPath(); // 开始画五角星
 
-        var side = angleCount * 2;
+        var side = isAngle ? angleCount * 2 : angleCount;
         //draw 10 lines;
         for (var i = 1; i <= side; i++){
         var radius2 = radius;
-        if (i % 2 > 0){
+        if (i % 2 > 0 && isAngle){
           //alternate the radius to make spikes every other line
-          radius2 = radius / 2;
+          radius2 = radius * 2 / 5; // 凹陷的角，根据角度可以手动调节比例，等于半径就是多边形
         }
-        var angle = Math.PI * 2 / side * i;
-        // console.log(angle);
-        context.lineTo(Math.cos(angle)*radius2 + dx, Math.sin(angle)*radius2 + dy);
+          var angle = Math.PI * 2 / side * i;
+          // console.log(angle);
+          context.lineTo(Math.cos(angle)*radius2 + dx, Math.sin(angle)*radius2 + dy);
         }
 
         context.closePath();
@@ -67,12 +68,12 @@
       // star(); // 默认绘制
       // // 绘制200个五角星
       // for (var i = 0; i < 200; i++) {
-      //   star(Math.random() * 20, Math.random() * 500, Math.random() * 400);
+      //   star(true, Math.random() * 20, Math.random() * 500, Math.random() * 400);
       // }
       //
       // // 绘制200个随机多角型
       // for (var i = 0; i < 200; i++) {
-      //   star(Math.random() * 20, Math.random() * 500, Math.random() * 400, Math.ceil((Math.random() * 8)) + 2);
+      //   star(true, Math.random() * 20, Math.random() * 500, Math.random() * 400, Math.ceil((Math.random() * 8)) + 2);
       // }
 
       context.translate(200,0);
