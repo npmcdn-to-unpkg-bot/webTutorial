@@ -10,12 +10,12 @@ new HomeRoute();
 
 // 延迟加载模块
 require.ensure([], function(require) {
-  var about = require('./router/pay.js').default;
+  var pay = require('./router/pay.js').default;
   var PayRoute = Backbone.Router.extend({
     routes: {
         'pay': 'pay'
     },
-    about
+    pay
   });
   new PayRoute();
 });

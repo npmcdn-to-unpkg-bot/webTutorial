@@ -124,12 +124,12 @@
 
 	// 延迟加载模块
 	__webpack_require__.e/* nsure */(1, function (require) {
-	  var about = __webpack_require__(6).default;
+	  var pay = __webpack_require__(6).default;
 	  var PayRoute = _backbone2.default.Router.extend({
 	    routes: {
 	      'pay': 'pay'
 	    },
-	    about: about
+	    pay: pay
 	  });
 	  new PayRoute();
 	});
