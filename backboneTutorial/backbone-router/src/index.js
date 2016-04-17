@@ -39,7 +39,7 @@ require.ensure([], function(require) {
 //       // 'pay': 'pay'
 //   },
 //     home,
-//     // about: about,
-//     // pay: pay,
+//     about,
+//     pay,
 // });
 Backbone.history.start();
