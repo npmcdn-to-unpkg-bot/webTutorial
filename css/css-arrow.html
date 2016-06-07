@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>使用css实现箭头</title>
+  </head>
+  <body>
+
+    <!-- 一个梯形 -->
+    <div id="demo1"></div>
+    <!-- 一个三角形 -->
+    <div id="demo2"></div>
+    <!-- 任意角度的三角形 -->
+    <div id="demo3"></div>
+    <style>
+      div {
+        margin: 5px;
+      }
+      #demo1 {
+        border: 10px solid #000;
+        border-left-color: #f00;
+        width: 10px;
+        height: 10px;
+      }
+      #demo2 {
+        /*border: 10px solid #000;*/
+        border: 10px solid transparent;
+        border-left-color: #f00;
+        width: 0;
+        height: 0;
+      }
+
+      #demo3 {
+        /*border: 10px solid #000;*/
+        border: 10px solid transparent;
+        border-left:40px dashed #f00;
+      }
+    </style>
+  </body>
+</html>
