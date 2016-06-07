@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>五彩缤纷的星星</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="400"></canvas>
+    <script type="text/javascript">
+
+      var context = document.getElementById("canvas").getContext("2d");
+      context.fillStyle = '#ddd';
+      context.fillRect(0,0,500,400);
+      /**
+       * [getRandomColor 获取随机颜色]
+       * @return {[type]} [description]
+       */
+      function getRandomColor(){
+        var padLeftHex = function(color){
+            while (color.length < 6) {
+              color = "0" + color;
+            }
+            return "#" + color;
+          },
+          randomColor = parseInt(Math.random()*16777215).toString(16), // 随机一个颜色值
+          hexColor = padLeftHex(randomColor); // 不够六位补零
+        // console.log(hexColor);
+        return hexColor;
+      }
+
+      /**
+       * [star 根据参数画出多边形或者多角形 默认画五角星, 参数可以不传, 默认绘制半径20，水平100px, 垂直100px, 的五角星]
+       * @param  {[type]} isAngle     [是多角形还是多边形 默认多角形]
+       * @param  {[type]} radius     [五角星半径 默认 55]
+       * @param  {[type]} dx         [水平坐标五角星中心位置 x 默认250]
+       * @param  {[type]} dy         [垂直坐标五角星中心位置 y 默认200]
+       * @param  {[type]} angleCount [角的数量，自定义角数量，默认为五角星]
+       * @return {[type]}            [绘制随机颜色的五角星]
+       */
+      function star(isAngle = true, radius = 55, dx = 250, dy = 200, angleCount = 5){
+        context.fillStyle = getRandomColor(); // 填充颜色
+
+        context.shadowColor= getRandomColor(); // 阴影颜色
+        context.strokeStyle = getRandomColor(); // 描边颜色
+        context.shadowOffsetX=5; // 阴影偏移量x
+        context.shadowOffsetY=5; // 阴影偏移量y
+        context.shadowBlur=10;  // 模糊长度
+        context.beginPath(); // 开始画五角星
+
+        var side = isAngle ? angleCount * 2 : angleCount;
+        //draw 10 lines;
+        for (var i = 1; i <= side; i++){
+        var radius2 = radius;
+        if (i % 2 > 0 && isAngle){
+          //alternate the radius to make spikes every other line
+          radius2 = radius * 2 / 5; // 凹陷的角，根据角度可以手动调节比例，等于半径就是多边形
+        }
+          var angle = Math.PI * 2 / side * i;
+          // console.log(Math.cos(angle)*radius2 + dx , Math.sin(angle)*radius2 + dy);
+          context.lineTo(Math.cos(angle)*radius2 + dx, Math.sin(angle)*radius2 + dy);
+        }
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.beginPath();
+        context.strokeStyle = getRandomColor(); // 描边颜色
+        context.arc(dx, dy, radius, 0, Math.PI * 2, false);
+        context.stroke();
+        context.closePath();
+      }
+
+      // star(); // 默认绘制
+      // // 绘制200个五角星
+      // for (var i = 0; i < 200; i++) {
+      //   star(true, Math.random() * 20, Math.random() * 500, Math.random() * 400);
+      // }
+      //
+      // // 绘制200个随机多角型
+      // for (var i = 0; i < 200; i++) {
+      //   star(true, Math.random() * 20, Math.random() * 500, Math.random() * 400, Math.ceil((Math.random() * 8)) + 2);
+      // }
+
+      context.translate(200,0);
+      for(var i=0;i<200;i++){ // 螺旋式
+        context.scale(0.96,0.96);
+        context.rotate(Math.PI/8);
+        context.translate(70,-25);
+        star();
+      }
+    </script>
+  </body>
+</html>

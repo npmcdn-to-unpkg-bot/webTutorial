@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>K 线图</title>
+  </head>
+  <body>
+    <canvas id="stock-canvas" width="650" height="500"></canvas>
+    <script type="text/javascript">
+
+    window.loadStockData = function(r) {
+      var NUMS = 30,
+          data = r.data;
+          console.log(data);
+      if(data.length > NUMS) {
+        data = data.slice(data.length - NUMS);
+      }
+      console.log(data);
+      data = data.map(function(x) {
+        return {
+          date: x[0],
+          open: x[1],
+          close: x[2],
+          hight: x[3],
+          low: x[4],
+          vol: x[5],
+          change: x[6]
+        }
+      });
+      console.log(data);
+
+      drawStock(data);
+    }
+
+    window.drawStock = function (data) {
+      var stockCanvas = document.getElementById("stock-canvas"),
+          width = stockCanvas.width,
+          height = stockCanvas.height,
+          context = stockCanvas.getContext('2d');
+          context.clearRect(0, 0, 650, 500); // 清空画布
+          context.fillStyle = "#ddd"; // 设置填充颜色
+          context.fillRect(0, 0, 650, 500); // 填充画布背景色
+
+          // 利用 Path 绘制复杂路径
+          var path = new Path2D();
+    }
+
+
+
+
+
+      // 加载 163 最近30个交易日的K线图JSON数据
+      var js = document.createElement('script');
+      js.src='http://img1.money.126.net/data/hs/kline/day/history/2016/0000001.json?callback=loadStockData&t=' + Date.now();
+      document.getElementsByTagName('head')[0].appendChild(js);
+    </script>
+  </body>
+</html>

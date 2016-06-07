@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>touchmove 移动距离</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <style media="screen">
+    body{
+      margin: 0;
+    }
+
+    .test {
+      background: cyan;
+      width: 100vw;
+      height: 100vh;
+    }
+    .test>p{
+      width: 50%;
+      background-color: yellow;
+      margin: 0;
+    }
+  </style>
+  <body>
+    <div class="test">
+      <p>
+        asdfasdf
+      </p>
+    </div>
+    <script type="text/javascript">
+      (function () {
+          var el = document.querySelector('.test');
+          var startPosition, endPosition, deltaX, deltaY, moveLength;
+
+          el.addEventListener('touchstart', function (e) {
+              var touch = e.touches[0];
+              startPosition = {
+                  x: touch.pageX,
+                  y: touch.pageY
+              }
+          });
+
+          el.addEventListener('touchmove', function (e) {
+              var touch = e.touches[0];
+              endPosition = {
+                  x: touch.pageX,
+                  y: touch.pageY
+              }
+
+              deltaX = endPosition.x - startPosition.x;
+              deltaY = endPosition.y - startPosition.y;
+              moveLength = Math.sqrt(Math.pow(Math.abs(deltaX), 2) + Math.pow(Math.abs(deltaY), 2));
+              console.log(moveLength);
+          });
+          el.addEventListener('touchend', function (e) {
+            // console.log(e.changedTouches);
+              var touch = e.changedTouches[0];
+              endPosition = {
+                  x: touch.pageX,
+                  y: touch.pageY
+              }
+
+              deltaX = endPosition.x - startPosition.x;
+              deltaY = endPosition.y - startPosition.y;
+              moveLength = Math.sqrt(Math.pow(Math.abs(deltaX), 2) + Math.pow(Math.abs(deltaY), 2));
+              console.log(moveLength);
+          });
+      })();
+    </script>
+  </body>
+</html>
