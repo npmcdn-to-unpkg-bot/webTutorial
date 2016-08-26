@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Redux Getting Started</title>
+    <script src="https://npmcdn.com/redux@latest/dist/redux.min.js"></script>
+
+  </head>
+  <body>
+    <input type="text" id="text" value="false">
+    <button type="button" id="toggleBtn">click me</button>
+
+    <script type="text/javascript">
+      function toggle(state, action){
+        // console.log(state, action);
+        if(state){
+          state = false;
+        }else{
+          state = true;
+        }
+
+        return state;
+      }
+
+      var store = Redux.createStore(toggle);
+
+      function render(){
+        document.getElementById("text").value = store.getState().toString();
+      }
+
+      store.subscribe(render);
+
+      document.getElementById("toggleBtn").addEventListener('click', function(event){
+        store.dispatch({type: "toggle"});
+      }, false);
+    </script>
+  </body>
+</html>
